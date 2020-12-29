@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
+import 'package:practice/screen/searchTransaction.dart';
+import 'package:practice/screen/voidTransaction.dart';
 import 'package:practice/screen/webpage.dart';
 // import 'package:practice/screen/webpage.dart';
 import 'package:practice/services/multisysApi.dart';
@@ -63,19 +65,28 @@ class _OrderState extends State<Order> {
       appBar: AppBar(
         title: Text('Order'),
         actions: [
-          // IconButton(
-          //   icon: Icon(Icons.arrow_forward),
-          //   onPressed: () {
-          //     Navigator.push(
-          //       context,
-          //       MaterialPageRoute(
-          //         builder: (context) => WebPage(
-          //           apiUrl: _apiUrl,
-          //         ),
-          //       ),
-          //     );
-          //   },
-          // ),
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SearchTransaction(),
+                ),
+              );
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.delete),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => VoidTransaction(),
+                ),
+              );
+            },
+          ),
         ],
       ),
       body: Container(

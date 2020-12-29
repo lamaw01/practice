@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:practice/screen/order.dart';
-import 'package:practice/sliverview.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
@@ -258,56 +257,88 @@ class _TabsState extends State<Tabs> with SingleTickerProviderStateMixin {
                                   SizedBox(
                                     height: 10.0,
                                   ),
-                                  Card(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            list_name[index]['food2']['name'],
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 20),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => Order(
+                                            amountVal: list_name[index]['food2']
+                                                ['price'],
+                                            menuName: list_name[index]['food2']
+                                                ['name'],
                                           ),
-                                          Text(
-                                            list_name[index]['food2']['price'],
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 20),
-                                          ),
-                                        ],
+                                        ),
+                                      );
+                                    },
+                                    child: Card(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              list_name[index]['food2']['name'],
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 20),
+                                            ),
+                                            Text(
+                                              list_name[index]['food2']
+                                                  ['price'],
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 20),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
                                   SizedBox(
                                     height: 10.0,
                                   ),
-                                  Card(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            list_name[index]['food3']['name'],
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 20),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => Order(
+                                            amountVal: list_name[index]['food3']
+                                                ['price'],
+                                            menuName: list_name[index]['food3']
+                                                ['name'],
                                           ),
-                                          Text(
-                                            list_name[index]['food3']['price'],
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 20),
-                                          ),
-                                        ],
+                                        ),
+                                      );
+                                    },
+                                    child: Card(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              list_name[index]['food3']['name'],
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 20),
+                                            ),
+                                            Text(
+                                              list_name[index]['food3']
+                                                  ['price'],
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 20),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -333,18 +364,6 @@ class _TabsState extends State<Tabs> with SingleTickerProviderStateMixin {
             ],
           ),
         ),
-        // floatingActionButton: FloatingActionButton(
-        //   backgroundColor: Colors.red,
-        //   child: Icon(Icons.arrow_forward),
-        //   onPressed: () {
-        //     Navigator.push(
-        //       context,
-        //       MaterialPageRoute(
-        //         builder: (context) => SliverView(),
-        //       ),
-        //     );
-        //   },
-        // ),
       ),
     );
   }

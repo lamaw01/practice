@@ -1,0 +1,76 @@
+import 'package:flutter/material.dart';
+import 'package:practice/services/multisysApi.dart';
+
+class SearchTransaction extends StatefulWidget {
+  @override
+  _SearchTransactionState createState() => _SearchTransactionState();
+}
+
+class _SearchTransactionState extends State<SearchTransaction> {
+  final TextEditingController refnoController = TextEditingController();
+  var searchResult;
+  var scaffoldValueToPass = "";
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  searchTransaction(String refno) async {
+    searchResult = await MultisysApi().getsearchTransaction(refno);
+    setState(() {
+      scaffoldValueToPass = searchResult;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      key: _scaffoldKey,
+      appBar: AppBar(
+        title: Text('Search Transaction'),
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Text('Refno'),
+              TextField(
+                controller: refnoController,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              MaterialButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18.0),
+                  side: BorderSide(
+                    color: Colors.black,
+                  ),
+                ),
+                child: Text('Search Transaction'),
+                onPressed: () async {
+                  String refno = refnoController.text;
+
+                  if (refno.isNotEmpty) {
+                    await searchTransaction(refno);
+                  } else {
+                    setState(() {
+                      scaffoldValueToPass = 'Null';
+                    });
+                  }
+
+                  _scaffoldKey.currentState.showSnackBar(
+                    SnackBar(
+                      duration: const Duration(seconds: 6),
+                      content: Text(
+                        scaffoldValueToPass,
+                      ),
+                    ),
+                  );
+                },
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

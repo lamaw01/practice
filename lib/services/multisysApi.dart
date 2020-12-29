@@ -105,11 +105,11 @@ class MultisysApi {
       } else if (responsesearchTransaction.statusCode == 404) {
         final responseString = json.decode(responsesearchTransaction.body);
         print(responseString);
-        return responseString;
+        return responseString.toString();
       } else if (responsesearchTransaction.statusCode == 405) {
         final responseString = json.decode(responsesearchTransaction.body);
         print(responseString);
-        return responseString;
+        return responseString.toString();
       } else {
         return null;
       }
