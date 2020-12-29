@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Corn",
+        "price": "1",
+        "imagename": "assets/images/corn.jpg"
+    },
+    {
+        "name": "Inasal",
+        "price": "1.50",
+        "imagename": "assets/images/inasal.jpg"
+    },
+    {
+        "name": "Tocino",
+        "price": "1.25",
+        "imagename": "assets/images/tocino.jpg"
+    },
+    {
+        "name": "Cake",
+        "price": "2.25",
+        "imagename": "assets/images/cake.jpg"
+    },
+    {
+        "name": "Calamari",
+        "price": "2",
+        "imagename": "assets/images/calamari.jpg"
+    }
+]
