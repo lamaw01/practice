@@ -83,7 +83,7 @@ class MultisysApi {
   }
 
   // SEARCH THE TRANSACTION USING REF #
-  // RETURNS A MODEL
+  // RETURNS STRING VALUE
   Future<String> getsearchTransaction(String refno) async {
     try {
       String getsearchTransactionApilUrl =

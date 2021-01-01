@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practice/screen/order.dart';
+import 'package:practice/screen/scrollview.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
@@ -363,6 +364,14 @@ class _TabsState extends State<Tabs> with SingleTickerProviderStateMixin {
               ),
             ],
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.red,
+          child: Icon(Icons.forward),
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => ScrollWidget()));
+          },
         ),
       ),
     );
