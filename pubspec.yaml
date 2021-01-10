@@ -35,6 +35,8 @@ dependencies:
   webview_flutter: ^1.0.7
   scroll_to_index: ^1.0.6
   scrollable_positioned_list: ^0.1.8
+  pin_code_fields: ^6.0.2
+
 
 dev_dependencies:
   flutter_test:

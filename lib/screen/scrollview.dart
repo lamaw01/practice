@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice/screen/pinscreen.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 // ignore: unused_import
 import 'package:visibility_detector/visibility_detector.dart';
@@ -230,6 +231,18 @@ class _ScrollWidgetState extends State<ScrollWidget>
             ),
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.green,
+        child: Icon(Icons.star),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PinScreen(),
+            ),
+          );
+        },
       ),
     );
   }
