@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+// ignore: unused_import
+import 'package:practice/screen/pinscreen.dart';
+// ignore: unused_import
+import 'package:practice/screen/scrollview.dart';
 // import 'package:/practice/tabs.dart';
 // import 'package:practice/home.dart';
+// ignore: unused_import
 import 'package:practice/screen/tabs.dart';
 
 void main() {
@@ -14,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'flutterTabs',
-      home: Tabs(),
+      home: PinScreen(),
     );
   }
 }

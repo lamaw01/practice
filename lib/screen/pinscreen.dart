@@ -1,8 +1,10 @@
 import 'dart:async';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:practice/screen/tabs.dart';
+// ignore: unused_import
+import 'package:practice/screen/timeout.dart';
 
 class PinScreen extends StatefulWidget {
   @override
@@ -14,8 +16,20 @@ class _PinScreenState extends State<PinScreen> {
   final String correctPass = '6669';
   var onTapRecognizer;
 
+  void callNav() async {
+    Future.delayed(Duration(seconds: 2), () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Tabs(),
+        ),
+      );
+    });
+  }
+
   @override
   void initState() {
+    // startKeepAlive();
     onTapRecognizer = TapGestureRecognizer()
       ..onTap = () {
         Navigator.pop(context);
@@ -27,7 +41,6 @@ class _PinScreenState extends State<PinScreen> {
   @override
   void dispose() {
     errorController.close();
-
     super.dispose();
   }
 
@@ -49,6 +62,7 @@ class _PinScreenState extends State<PinScreen> {
         return alert;
       },
     );
+    callNav();
   }
 
   @override

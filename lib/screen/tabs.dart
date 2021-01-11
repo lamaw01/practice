@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:practice/screen/order.dart';
 import 'package:practice/screen/scrollview.dart';
+import 'package:practice/screen/timeout.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
@@ -105,7 +106,7 @@ class _TabsState extends State<Tabs> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-
+    startKeepAlive();
     tabController = TabController(
       initialIndex: selectedIndex,
       length: list_name.length,
