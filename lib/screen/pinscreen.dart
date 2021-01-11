@@ -97,9 +97,9 @@ class _PinScreenState extends State<PinScreen> {
                   print(value);
                 },
                 pinTheme: PinTheme(
-                  activeColor: Colors.blue,
-                  selectedColor: Colors.red,
-                  inactiveColor: Colors.orange,
+                  activeColor: Colors.green,
+                  selectedColor: Colors.blue,
+                  inactiveColor: Colors.red,
                 ),
                 onCompleted: (value) {
                   if (value != correctPass) {
@@ -110,6 +110,10 @@ class _PinScreenState extends State<PinScreen> {
                     showAlertDialog();
                   }
                 },
+                dialogConfig: DialogConfig(
+                  // dialogTitle: "Dialog Title",
+                  dialogContent: "Paste this code",
+                ),
               ),
             ],
           ),
