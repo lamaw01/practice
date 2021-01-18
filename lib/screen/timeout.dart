@@ -7,6 +7,11 @@ import 'package:flutter/services.dart';
 const _inactivityTimeout = Duration(seconds: 10);
 Timer _keepAliveTimer;
 
+void timeout(){
+  print('exited timeout');
+  SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+}
+
 void _keepAlive(bool visible) {
   _keepAliveTimer?.cancel();
   if (visible) {
@@ -14,7 +19,7 @@ void _keepAlive(bool visible) {
   } else {
     _keepAliveTimer = Timer(
       _inactivityTimeout,
-      () => SystemChannels.platform.invokeMethod('SystemNavigator.pop'),
+      () => timeout(),
     );
   }
 }
