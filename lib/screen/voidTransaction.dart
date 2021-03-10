@@ -57,6 +57,7 @@ class _VoidTransactionState extends State<VoidTransaction> {
                     });
                   }
 
+                  // ignore: deprecated_member_use
                   _scaffoldKey.currentState.showSnackBar(
                     SnackBar(
                       duration: const Duration(seconds: 6),

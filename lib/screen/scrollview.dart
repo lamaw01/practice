@@ -119,27 +119,46 @@ class _ScrollWidgetState extends State<ScrollWidget>
         length: list_name.length,
         child: NestedScrollView(
           controller: scrollController,
-          headerSliverBuilder: (context, value) {
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return [
               SliverAppBar(
+                primary: true,
                 pinned: true,
-                bottom: TabBar(
-                  controller: tabController,
-                  onTap: (index) => _controller.jumpTo(index: index),
-                  isScrollable: true,
-                  tabs: List<Widget>.generate(list_name.length, (int index) {
-                    // print(index);
-                    return Tab(
-                      iconMargin: EdgeInsets.symmetric(horizontal: 16.0),
-                      // text: list_name[index]['title'] st,
-                      child: Text(
-                        list_name[index]['title'],
-                        style: TextStyle(
-                          fontSize: 20.0,
-                        ),
-                      ),
-                    );
-                  }),
+                floating: true,
+                expandedHeight: 200,
+                forceElevated: innerBoxIsScrolled,
+                // title: Text('hello'),
+                flexibleSpace: FlexibleSpaceBar(
+                  background: Image.network(
+                    "https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg?auto=compress&cs=tinysrgb&h=350",
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              SliverPersistentHeader(
+                pinned: true,
+                delegate: _SliverAppBarDelegate(
+                  TabBar(
+                    controller: tabController,
+                    onTap: (index) => _controller.jumpTo(index: index),
+                    isScrollable: true,
+                    tabs: List<Widget>.generate(
+                      list_name.length,
+                      (int index) {
+                        // print(index);
+                        return Tab(
+                          iconMargin: EdgeInsets.symmetric(horizontal: 16.0),
+                          // text: list_name[index]['title'] st,
+                          child: Text(
+                            list_name[index]['title'],
+                            style: TextStyle(
+                              fontSize: 20.0,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
                 ),
               ),
             ];
@@ -246,5 +265,30 @@ class _ScrollWidgetState extends State<ScrollWidget>
         },
       ),
     );
+  }
+}
+
+class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  _SliverAppBarDelegate(this._tabBar);
+
+  final TabBar _tabBar;
+
+  @override
+  double get minExtent => _tabBar.preferredSize.height;
+  @override
+  double get maxExtent => _tabBar.preferredSize.height;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return new Container(
+      color: Colors.pink, // ADD THE COLOR YOU WANT AS BACKGROUND.
+      child: _tabBar,
+    );
+  }
+
+  @override
+  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+    return false;
   }
 }
