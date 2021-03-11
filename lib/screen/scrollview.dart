@@ -3,10 +3,30 @@ import 'package:practice/screen/timeout.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-var dummyData = [
+List<Map<String, dynamic>> dummyData = [
   {
     "type": "fuel",
     "items": [
+      {
+        "slot1": "sulod slot1",
+        "slot2": "sulod slot1",
+      },
+      {
+        "slot1": "sulod slot1",
+        "slot2": "sulod slot1",
+      },
+      {
+        "slot1": "sulod slot1",
+        "slot2": "sulod slot1",
+      },
+      {
+        "slot1": "sulod slot1",
+        "slot2": "sulod slot1",
+      },
+      {
+        "slot1": "sulod slot1",
+        "slot2": "sulod slot1",
+      },
       {
         "slot1": "sulod slot1",
         "slot2": "sulod slot1",
@@ -39,8 +59,20 @@ var dummyData = [
     ],
   },
   {
-    "type": "nitrogen",
+    "type": "turbo",
     "items": [
+      {
+        "slot1": "sulod slot1",
+        "slot2": "sulod slot1",
+      },
+      {
+        "slot1": "sulod slot1",
+        "slot2": "sulod slot1",
+      },
+      {
+        "slot1": "sulod slot1",
+        "slot2": "sulod slot1",
+      },
       {
         "slot1": "sulod slot1",
         "slot2": "sulod slot1",
@@ -224,7 +256,10 @@ class _ScrollWidgetState extends State<ScrollWidget>
         child: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
+              title: Text('Menu'),
               expandedHeight: 200,
+              floating: true,
+              pinned: true,
               flexibleSpace: FlexibleSpaceBar(
                 background: Image.network(
                   "https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg?auto=compress&cs=tinysrgb&h=350",
@@ -240,8 +275,14 @@ class _ScrollWidgetState extends State<ScrollWidget>
                   // onTap: (index) => _controller.jumpTo(index: index),
 
                   onTap: (index) {
-                    Scrollable.ensureVisible(keys[index].currentContext);
-                    print(keys[index]);
+                    // Scrollable.ensureVisible(keys[index].currentContext);
+                    WidgetsBinding.instance.addPostFrameCallback((_) =>
+                        Scrollable.ensureVisible(keys[index].currentContext));
+                    setState(() {
+                      selectedIndex = index;
+                      tabController.animateTo(selectedIndex);
+                      print(selectedIndex);
+                    });
                   },
                   // =>
                   //     Scrollable.ensureVisible(keys[index].currentContext),
@@ -271,17 +312,37 @@ class _ScrollWidgetState extends State<ScrollWidget>
                   return VisibilityDetector(
                     onVisibilityChanged: (VisibilityInfo info) {
                       var visiblePercentage = info.visibleFraction * 100;
+                      // var isHidden = info.size;
+                      // debugPrint('Widget ${info.key} is $isHidden');
                       debugPrint(
                           'Widget ${info.key} is $visiblePercentage% visible');
-                      if (info.visibleFraction == 1) {
-                        setState(() {
-                          selectedIndex = indexList;
-                          tabController.animateTo(selectedIndex);
-                          print(selectedIndex);
-                        });
-                      } else {
-                        // print('selectedIndex $selectedIndex');
-                        if (info.visibleBounds == null) {
+
+                      // if (info.visibleFraction == 1) {
+                      //   setState(() {
+                      //     selectedIndex = indexList;
+                      //     tabController.animateTo(selectedIndex);
+                      //     print(selectedIndex);
+                      //   });
+                      // }
+                      // if (visiblePercentage >= 0.0 &&
+                      //     visiblePercentage >= 100.0) {
+                      //   print(info.key.toString());
+                      //   setState(() {
+                      //     selectedIndex = indexList;
+                      //     tabController.animateTo(selectedIndex);
+                      //     print(selectedIndex);
+                      //   });
+                      // }
+                      // if (visiblePercentage >= 0.0) {
+                      //   if (info.key.toString() == "[<'0'>]") {
+                      //     setState(() {
+                      //       selectedIndex = 0;
+                      //       tabController.animateTo(0);
+                      //     });
+                      //   }
+                      // }
+                      if (visiblePercentage >= 0.0) {
+                        if (info.key.toString() == info.key.toString()) {
                           setState(() {
                             selectedIndex = indexList;
                             tabController.animateTo(selectedIndex);
@@ -289,6 +350,31 @@ class _ScrollWidgetState extends State<ScrollWidget>
                           });
                         }
                       }
+                      // if (visiblePercentage == 0.0 &&
+                      //     info.key.toString() == info.key.toString()) {
+                      //   setState(() {
+                      //     selectedIndex = indexList;
+                      //     tabController.animateTo(selectedIndex);
+                      //     print(selectedIndex);
+                      //   });
+                      // }
+                      // else if (info.key.toString() == "[<'0'>]") {
+                      //   setState(() {
+                      //     selectedIndex = 0;
+                      //     tabController.animateTo(0);
+                      //   });
+                      // }
+                      // if (inf) {}
+                      //  else {
+                      //   // print('selectedIndex $selectedIndex');
+                      //   if (info.visibleBounds == null) {
+                      //     setState(() {
+                      //       selectedIndex = indexList;
+                      //       tabController.animateTo(selectedIndex);
+                      //       print(selectedIndex);
+                      //     });
+                      //   }
+                      // }
                     },
                     key: Key(indexList.toString()),
                     child: Card(
@@ -310,14 +396,20 @@ class _ScrollWidgetState extends State<ScrollWidget>
                                 height: 30.0,
                               ),
                               for (var i in dummyData[indexList]['items'])
+
                                 // var item = dummyData[indexList]['items'][i]['slot1']
-                                Text(
-                                  dummyData[indexList]['items'].toString(),
-                                  style: TextStyle(fontSize: 20.0),
+                                Container(
+                                  margin: EdgeInsets.symmetric(vertical: 15),
+                                  padding: EdgeInsets.symmetric(vertical: 15),
+                                  child: Text(
+                                    dummyData[indexList]['items'][i.length - 1]
+                                        ['slot1'],
+                                    style: TextStyle(fontSize: 20.0),
+                                  ),
                                 ),
-                              SizedBox(
-                                height: 30.0,
-                              ),
+                              // SizedBox(
+                              //   height: 30.0,
+                              // ),
                             ],
                           ),
                         ),

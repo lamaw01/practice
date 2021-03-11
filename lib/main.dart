@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice/screen/old_scroll_view.dart';
 // ignore: unused_import
 import 'package:practice/screen/pinscreen.dart';
 // ignore: unused_import
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'flutterTabs',
-      home: ScrollWidget(),
+      // home: ScrollWidget(),
+      home: OldScrollWidget(),
     );
   }
 }
